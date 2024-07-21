@@ -25,7 +25,15 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
-        $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertStatus(302); // Memastikan redirect terjadi
+        $response->assertRedirect('/dashboard'); // Sesuaikan dengan rute redirect yang benar
+        
+        // Tambahkan debugging
+        $response->dump(); // Untuk melihat respons
+
+        $this->assertAuthenticated(); // 
+        // $this->assertAuthenticated();
+        // $response->assertRedirect(route('dashboard', absolute: false));
+        
     }
 }
